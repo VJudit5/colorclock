@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2023 by anonymous (http://jsbin.com/rozecobaci/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <title>Color clock</title>
+<style id="jsbin-css">
+* { 
+  margin: 0; 
+  padding: 0; 
+}
+
+html, body {
+  height: 100%;
+}
+
+#clock {
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  top: 30%;
+  font-family: 'Marcellus', serif;
+  font-size: 5rem;
+  margin-top: -2.5rem;
+}
+</style>
+</head>
+<body>
+
+  <div id="clock">12:13:14</div>
+  
+<script id="jsbin-javascript">
+function colorClock(){
+var date = new Date();
+
+var hours = date.getHours();
+var minutes = date.getMinutes();
+var seconds = date.getSeconds();
+  
+var secondsMod = Math.round(seconds * 4).toString(16); 
+var minutesMod = Math.round(minutes * 4).toString(16); 
+var hoursMod = Math.round(hours * 9).toString(16); 
+  
+if (seconds < 10) {
+  seconds = '0' + seconds;
+}
+
+if (minutes < 10) {
+  minutes = '0' + minutes;
+}
+
+if (hours < 10) {
+  hours = '0' + hours;
+}
+
+if (hoursMod.length = 1) {
+    hoursMod = "f" + hoursMod;  
+}  
+  
+if (minutesMod.length = 1) {
+    minutesMod = "f" + minutesMod;  
+}  
+  
+if (secondsMod.length = 1) {
+    secondsMod = "f" + secondsMod;  
+}    
+  
+var clockFace = hours + ':' + minutes + ':' + seconds;
+var hexColor = '#' + minutesMod + hoursMod + secondsMod;
+
+document.getElementById('clock').innerHTML = clockFace;
+
+setTimeout(function() {
+  colorClock();
+}, 1000);
+
+document.body.style.background = hexColor;
+
+}
+
+colorClock();
+
+
+
+
+</script>
+</body>
+</html>
